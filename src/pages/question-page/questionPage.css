@@ -1,0 +1,36 @@
+.question-wrapper {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.question-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--xl-space);
+  padding: var(--xl-space);
+}
+.question {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--xl-space);
+}
+.option {
+  background-color: var(--option-bg-color);
+  padding: var(--md-space);
+  cursor: pointer;
+}
+.option:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  transition: 0.3s ease-in;
+}
+.correct-answer {
+  background-color: var(--btn-success-color);
+  color: var(--secondary-color);
+}
+.wrong-answer {
+  background-color: var(--btn-danger-color);
+  color: var(--secondary-color);
+}
