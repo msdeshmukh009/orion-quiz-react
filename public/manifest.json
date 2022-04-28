@@ -1,0 +1,15 @@
+{
+  "short_name": "Orion",
+  "name": "Orion Quiz",
+  "icons": [
+    {
+      "src": "/assets/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "hsl(204, 83%, 56%)",
+  "background_color": "hsl(210, 100%, 100%)"
+}
