@@ -1,0 +1,19 @@
+.result-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  justify-content: space-between;
+  min-height: 100vh;
+}
+.result-head {
+  gap: var(--md-space);
+  margin-bottom: var(--md-space);
+  padding: var(--lg-space);
+}
+.answers {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--lg-space);
+  width: 90%;
+  max-width: 112.5rem;
+  margin: auto;
+}
