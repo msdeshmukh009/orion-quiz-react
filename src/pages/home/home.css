@@ -1,0 +1,60 @@
+/*** main-container ***/
+.home-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+.main-container {
+  width: 90%;
+  max-width: 112.5rem;
+  margin: auto;
+  padding: var(--lg-space);
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--xxl-space);
+}
+/*******/
+
+/*** banner ***/
+.banner-details {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--md-space);
+  justify-content: center;
+  padding: var(--lg-space);
+}
+.banner-heading {
+  font-family: var(--font-family-ultra);
+  word-spacing: 20px;
+  font-size: 3rem;
+}
+/*******/
+
+/*** category-section ***/
+.category-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--xl-space);
+  margin-top: var(--xxxl-space);
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--lg-space);
+  justify-items: center;
+  align-content: center;
+}
+.card-paragraph {
+  padding: 0.5rem 0.75rem;
+}
+.block-btn {
+  display: inline-block;
+}
+/*******/
+
+/*** media-queries ***/
+@media only screen and (max-width: 750px) {
+  .banner-heading {
+    font-size: 2rem;
+  }
+}
+/*******/
