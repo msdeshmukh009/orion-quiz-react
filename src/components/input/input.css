@@ -1,0 +1,20 @@
+.form-container .form-grp .input-grp {
+  position: relative;
+  margin: var(--sm-space) 0;
+}
+.txt-message {
+  position: absolute;
+  right: 0;
+}
+.password-toggle-button.btn {
+  box-shadow: none;
+  position: absolute;
+  bottom: 4px;
+  right: 2px;
+  background-color: transparent;
+  color: var(--btn-dark-color);
+}
+.options {
+  position: relative;
+  margin: var(--xl-space) 0 var(--sm-space);
+}

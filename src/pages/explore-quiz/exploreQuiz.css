@@ -1,0 +1,22 @@
+.explore-quiz-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.quiz-display-container {
+  flex: 1;
+  height: 100%;
+  padding: var(--md-space);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  justify-items: center;
+  align-items: start;
+  gap: var(--lg-space);
+}
+.explore-quiz-container .card {
+  min-height: 18.5rem;
+}

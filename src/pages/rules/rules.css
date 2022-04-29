@@ -1,0 +1,23 @@
+.rules-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.rules {
+  width: 50%;
+  margin: auto;
+  padding: var(--md-space);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--primary-color);
+  border-radius: 4.8px;
+  gap: var(--lg-space);
+}
+
+@media screen and (max-width: 1000px) {
+  .rules {
+    width: 90%;
+  }
+}

@@ -1,0 +1,19 @@
+.footer {
+  padding: var(--xl-space);
+  margin-top: var(--xxxl-space);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.footer-list {
+  column-gap: var(--xl-space);
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+.footer-links {
+  text-decoration: none;
+  color: var(--text-color);
+}

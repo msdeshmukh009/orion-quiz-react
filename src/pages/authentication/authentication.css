@@ -1,0 +1,32 @@
+/*** form-container ***/
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+.form-container {
+  padding: var(--xl-space);
+  flex: 1;
+}
+.form-grp {
+  position: relative;
+  border: 1px solid var(--primary-color);
+  background-color: var(--background-color);
+}
+.form-text {
+  margin-top: var(--sm-space);
+}
+.option-helper-txt {
+  position: absolute;
+  top: 20px;
+}
+.link-btn {
+  gap: var(--sm-space);
+}
+.options label {
+  cursor: pointer;
+}
+/*******/
