@@ -1,9 +1,14 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../hooks";
+import { useAuth } from "../../hooks";
 
 const Navbar = () => {
   const { currentTheme, handleCurrentTheme } = useTheme();
+  const {
+    authState: { isAuthenticated },
+  } = useAuth();
+
   return (
     <nav className="nav-wrapper">
       <div className="nav">
@@ -23,11 +28,17 @@ const Navbar = () => {
               Home
             </Link>
           </li>
+
           <li>
-            <Link to="/sign-in" className="anchor-tag-badge-container" title="Login">
+            <Link
+              to={`${isAuthenticated ? "/profile" : "/sign-in"}`}
+              className="anchor-tag-badge-container"
+              title={`${isAuthenticated ? "Profile" : "Login"}`}
+            >
               <i className="fas fa-user "></i>
             </Link>
           </li>
+
           <li className="nav-list-web-item">
             <button
               className={`theme-toggle-btn text-md ${
