@@ -4,3 +4,5 @@ export { CategoryCard } from "./category-card/CategoryCard";
 export { QuizCard } from "./quiz-card/QuizCard";
 export { Question } from "./question/Question";
 export { Input } from "./input/Input";
+export { Loading } from "./loading/Loading";
+export { OverlayContainer } from "./overlay-container/OverlayContainer";

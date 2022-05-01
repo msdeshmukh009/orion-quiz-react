@@ -24,11 +24,15 @@
   --border-color: hsl(192, 4%, 44%);
   --card-shadow: 0 4px 8px 0 hsla(0, 1%, 29%, 0.2);
   --card-hover-shadow: 0 8px 16px 0 hsla(0, 1%, 55%, 0.2);
+  --card-overlay-color: hsla(240, 4%, 38%, 0.6);
 }
 /*******/
 
 /*** Utilities ***/
 .max-w-xs {
   max-width: 20rem;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 /*******/

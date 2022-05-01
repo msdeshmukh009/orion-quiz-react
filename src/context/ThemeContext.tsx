@@ -5,7 +5,7 @@ const ThemeContext = createContext({} as ThemeContextType);
 
 const ThemeProvider = ({ children }: ReactChildren) => {
   const [currentTheme, setCurrentTheme] = useState(
-    JSON.parse(localStorage.getItem("orion-quiz-theme") || "") || "dark"
+    JSON.parse(localStorage.getItem("orion-quiz-theme") || "{}") && "dark"
   );
   return (
     <ThemeContext.Provider value={{ currentTheme, setCurrentTheme }}>

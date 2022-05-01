@@ -1,10 +1,11 @@
 import "./authentication.css";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Input, Navbar } from "../../components";
-import { validFormChecker } from "./utils";
+import { Link, useLocation } from "react-router-dom";
+import { FormErrorsType, ReactChangeEvent, ReactMouseEvent, LocationState } from "../../types";
+import { Input, Loading, Navbar, OverlayContainer } from "../../components";
 import { PasswordInput } from "../../components/input/PasswordInput";
-import { FormErrorsType, ReactChangeEvent, ReactMouseEvent } from "../../types";
+import { validFormChecker } from "./utils";
+import { useAuth } from "../../hooks";
 
 const Signup = () => {
   const [formErrors, setFormErrors] = useState({} as FormErrorsType);
@@ -18,14 +19,30 @@ const Signup = () => {
     agreement: "not agree",
   });
 
+  const {
+    signUp,
+    authState: { isLoading, error },
+  } = useAuth();
+
+  const location = useLocation();
+
+  const { from } = (location.state as LocationState) || { from: { pathname: "/" } };
+
   const changeHandler = (e: ReactChangeEvent) => {
     const { name, value } = e.target;
     setUserInput({ ...userInput, [name]: value });
   };
+
   const formSubmitHandler = (e: ReactMouseEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    const { firstName, lastName, email, password } = userInput;
+    if (!(Object.values(formErrors).length > 0)) {
+      signUp({ firstName, lastName, email, password }, from);
+      setFormErrors({});
+    }
   };
+
   useEffect(() => {
     setFormErrors(() => validFormChecker(userInput));
   }, [userInput, submitted]);
@@ -33,9 +50,16 @@ const Signup = () => {
   return (
     <div className="form-wrapper">
       <Navbar />
+
       <div className="form-container flex-total-center">
         <form className="form-grp">
           <h2 className="text-center text-lg">Signup</h2>
+
+          {error && <p className="text-danger text-center">{error}</p>}
+
+          <OverlayContainer display={isLoading}>
+            <Loading />
+          </OverlayContainer>
           <Input
             type="text"
             defaultValue={userInput.firstName}
