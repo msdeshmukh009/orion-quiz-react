@@ -1,40 +1,44 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context";
 import { LogInUserInput, UserDetailType } from "../types";
 import { signupService, logoutService, loginService } from "../services";
 import { auth } from "../firebase-config";
-import { createUserDocument } from "../utils";
-import { getErrorMessage } from "../utils";
-import { onAuthStateChanged } from "firebase/auth";
+import { createUserDocument, getErrorMessage } from "../utils";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 const useAuth = () => {
   const { authState, authDispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const handleAuthStateChange = useCallback(
+    (currentUser: User | null) => {
+      if (currentUser) {
+        authDispatch({
+          type: "SET_AUTHENTICATION",
+          payload: {
+            isAuthenticated: true,
+            uid: currentUser.uid,
+          },
+        });
+      } else {
+        authDispatch({
+          type: "SET_AUTHENTICATION",
+          payload: {
+            isAuthenticated: false,
+            uid: "",
+          },
+        });
+      }
+    },
+    [authDispatch]
+  );
+
   useEffect(() => {
     onAuthStateChanged(auth, currentUser => {
-      (async () => {
-        if (currentUser) {
-          authDispatch({
-            type: "SET_AUTHENTICATION",
-            payload: {
-              isAuthenticated: true,
-              uid: currentUser.uid,
-            },
-          });
-        } else {
-          authDispatch({
-            type: "SET_AUTHENTICATION",
-            payload: {
-              isAuthenticated: false,
-              uid: "",
-            },
-          });
-        }
-      })();
+      handleAuthStateChange(currentUser);
     });
-  }, [authDispatch]);
+  }, [handleAuthStateChange]);
 
   const signUp = async (userInput: LogInUserInput & UserDetailType, from: { pathname: string }) => {
     const { email, password, firstName, lastName } = userInput;

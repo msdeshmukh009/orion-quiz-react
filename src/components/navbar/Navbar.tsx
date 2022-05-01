@@ -1,7 +1,6 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../hooks";
-import { useAuth } from "../../hooks";
+import { useTheme, useAuth } from "../../hooks";
 
 const Navbar = () => {
   const { currentTheme, handleCurrentTheme } = useTheme();
