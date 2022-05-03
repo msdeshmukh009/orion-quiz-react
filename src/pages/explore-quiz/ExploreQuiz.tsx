@@ -18,7 +18,7 @@ const ExploreQuiz = () => {
 
   useEffect(() => {
     setQuizData(quizzes.filter((quiz: DocumentData) => quiz.quizCategory === quizId));
-  }, [quizId]);
+  }, [quizId, quizzes]);
 
   return (
     <div className={`explore-quiz-container ${currentTheme === "dark" ? "dark" : "light"}`}>

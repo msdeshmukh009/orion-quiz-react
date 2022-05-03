@@ -10,7 +10,7 @@ const Rules = () => {
 
   useEffect(() => {
     gameDispatch({ type: "RESTART_QUIZ" });
-  }, []);
+  }, [gameDispatch]);
 
   return (
     <div className={`rules-container ${currentTheme === "dark" ? "dark" : "light"}`}>

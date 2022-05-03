@@ -12,7 +12,7 @@ const Question = () => {
 
   useEffect(() => {
     setSelectedOptionIndex(selectedOptions[currentQuestionIndex]);
-  }, [currentQuestionIndex]);
+  }, [currentQuestionIndex, selectedOptions]);
 
   const { question, questionImage, options } = questions[currentQuestionIndex];
 

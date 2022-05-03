@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     gameDispatch({ type: "RESET_QUIZ" });
-  }, []);
+  }, [gameDispatch]);
 
   return (
     <div className={`home-container ${currentTheme === "dark" ? "dark" : "light"}`}>
