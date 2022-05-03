@@ -43,28 +43,43 @@ const getUserDocument = async (uid: string) => {
 };
 
 const getCategories = async () => {
-  let res = await getDocs(categoriesRef);
-  const categories: DocumentData | undefined = res.docs.map(ele => {
-    return { ...ele.data(), id: ele.id };
-  });
-  return categories;
+  try {
+    let res = await getDocs(categoriesRef);
+    const categories: DocumentData | undefined = res.docs.map(ele => {
+      return { ...ele.data(), id: ele.id };
+    });
+    return categories;
+  } catch (err) {
+    console.log(err);
+    throw Error("something went wrong");
+  }
 };
 
 const getQuizzes = async () => {
-  let res = await getDocs(quizzesRef);
-  const quizzes: DocumentData | undefined = res.docs.map(ele => {
-    return { ...ele.data(), id: ele.id };
-  });
-  return quizzes;
+  try {
+    let res = await getDocs(quizzesRef);
+    const quizzes: DocumentData | undefined = res.docs.map(ele => {
+      return { ...ele.data(), id: ele.id };
+    });
+    return quizzes;
+  } catch (err) {
+    console.log(err);
+    throw Error("something went wrong");
+  }
 };
 
 const getQuiz = async (quizId: string) => {
-  const quizRef = collection(db, `quizzes/${quizId}/questions`);
-  const res = await getDocs(quizRef);
-  const quiz: DocumentData | undefined = res.docs.map(ele => {
-    return { ...ele.data(), id: ele.id };
-  });
-  return quiz;
+  try {
+    const quizRef = collection(db, `quizzes/${quizId}/questions`);
+    const res = await getDocs(quizRef);
+    const quiz: DocumentData | undefined = res.docs.map(ele => {
+      return { ...ele.data(), id: ele.id };
+    });
+    return quiz;
+  } catch (err) {
+    console.log(err);
+    throw Error("something went wrong");
+  }
 };
 
 export { createUserDocument, getUserDocument, getCategories, getQuizzes, getQuiz };
