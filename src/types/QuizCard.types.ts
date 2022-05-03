@@ -1,5 +1,6 @@
 type QuizCardProp = {
   quiz: {
+    id: string;
     quizName: string;
     quizDescription: string;
     quizStatus: string;

@@ -1,39 +1,22 @@
 import "./home.css";
-import { Footer, Navbar, CategoryCard } from "../../components";
-import { useTheme } from "../../hooks";
+import { Footer, Navbar, CategoryCard, Loading } from "../../components";
+import { useGame, useTheme } from "../../hooks";
+import { useQuiz } from "../../context";
+import { useEffect } from "react";
 
 const Home = () => {
   const { currentTheme } = useTheme();
-  const categoryData = [
-    {
-      categoryName: "The Space Quiz",
-      categoryDescription: "The ultimate space quiz for space geeks.",
-      categoryImage:
-        "https://raw.githubusercontent.com/msdeshmukh009/orion-quiz/dev/assets/astronaut-1784245__340.webp",
-      categoryStatus: "available",
-    },
-    {
-      categoryName: "The Space Movie Quiz",
-      categoryDescription: "Coming Soon...",
-      categoryImage:
-        "https://raw.githubusercontent.com/msdeshmukh009/orion-quiz/dev/assets/space-movie5.jpg",
-      categoryStatus: "not-available",
-    },
-    {
-      categoryName: "The Martian Quiz",
-      categoryDescription: "Coming Soon...",
-      categoryImage:
-        "https://raw.githubusercontent.com/msdeshmukh009/orion-quiz/dev/assets/martial-quiz.jpg",
-      categoryStatus: "not-available",
-    },
-    {
-      categoryName: "The Rick & Morty Quiz",
-      categoryDescription: "Coming Soon...",
-      categoryImage:
-        "https://raw.githubusercontent.com/msdeshmukh009/orion-quiz/dev/assets/rick-morty2.jpg",
-      categoryStatus: "not-available",
-    },
-  ];
+
+  const {
+    quizState: { categoryData, isLoading },
+  } = useQuiz();
+
+  const { gameDispatch } = useGame();
+
+  useEffect(() => {
+    gameDispatch({ type: "RESET_QUIZ" });
+  }, []);
+
   return (
     <div className={`home-container ${currentTheme === "dark" ? "dark" : "light"}`}>
       <Navbar />
@@ -61,9 +44,18 @@ const Home = () => {
         <section className="category-section">
           <h1 className="text-center text-xl">Categories</h1>
           <div className="category-grid" id="categories">
-            {categoryData.map((category, index) => {
-              return <CategoryCard key={index} category={category} />; //TODO:Give a valid key
-            })}
+            {isLoading && <Loading />}
+            {categoryData?.map(
+              (category: {
+                id: string;
+                categoryDescription: string;
+                categoryImage: string;
+                categoryName: string;
+                categoryStatus: string;
+              }) => {
+                return <CategoryCard key={category.id} category={category} />;
+              }
+            )}
           </div>
         </section>
       </main>

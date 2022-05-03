@@ -10,13 +10,15 @@ const NavigationRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+
       <Route path="/" element={<PrivateRoute />}>
-        <Route path="/explore-quiz" element={<ExploreQuiz />} />
+        <Route path="/explore-quiz/:quizId" element={<ExploreQuiz />} />
         <Route path="/rules" element={<Rules />} />
         <Route path="/result" element={<Result />} />
         <Route path="/question" element={<QuestionPage />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
+
       {!isAuthenticated ? (
         <>
           <Route path="/sign-up" element={<Signup />} />

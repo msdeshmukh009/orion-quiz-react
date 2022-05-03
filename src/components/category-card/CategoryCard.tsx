@@ -19,7 +19,10 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
       </div>
       {categoryStatus === "available" ? (
         <div className="card-cta-vertical">
-          <Link to="explore-quiz" className="btn btn-primary block-btn text-center">
+          <Link
+            to={`explore-quiz/${categoryName.toLocaleLowerCase().replaceAll(" ", "-")}`}
+            className="btn btn-primary block-btn text-center"
+          >
             Explore Quizzes
           </Link>
         </div>

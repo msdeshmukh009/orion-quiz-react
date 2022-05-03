@@ -1,6 +1,6 @@
 import { User } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { collection, doc, DocumentData, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { db, categoriesRef, quizzesRef } from "../firebase-config";
 
 const createUserDocument = async (
   user: User,
@@ -41,4 +41,30 @@ const getUserDocument = async (uid: string) => {
     console.log(err);
   }
 };
-export { createUserDocument, getUserDocument };
+
+const getCategories = async () => {
+  let res = await getDocs(categoriesRef);
+  const categories: DocumentData | undefined = res.docs.map(ele => {
+    return { ...ele.data(), id: ele.id };
+  });
+  return categories;
+};
+
+const getQuizzes = async () => {
+  let res = await getDocs(quizzesRef);
+  const quizzes: DocumentData | undefined = res.docs.map(ele => {
+    return { ...ele.data(), id: ele.id };
+  });
+  return quizzes;
+};
+
+const getQuiz = async (quizId: string) => {
+  const quizRef = collection(db, `quizzes/${quizId}/questions`);
+  const res = await getDocs(quizRef);
+  const quiz: DocumentData | undefined = res.docs.map(ele => {
+    return { ...ele.data(), id: ele.id };
+  });
+  return quiz;
+};
+
+export { createUserDocument, getUserDocument, getCategories, getQuizzes, getQuiz };
