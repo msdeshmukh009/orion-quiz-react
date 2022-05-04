@@ -1,32 +1,41 @@
 import "./exploreQuiz.css";
+import { DocumentData } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 import { Footer, Navbar, QuizCard } from "../../components";
+import { useEffect, useState } from "react";
+import { useQuiz } from "../../context";
 import { useTheme } from "../../hooks";
 
 const ExploreQuiz = () => {
   const { currentTheme } = useTheme();
-  const quizData = [
-    {
-      quizName: "Know Your Solar System",
-      quizDescription: "Test your knowledge of our solar system.",
-      quizImage:
-        "https://raw.githubusercontent.com/msdeshmukh009/orion-quiz/dev/assets/solar-stm.jpg",
-      quizStatus: "available",
-    },
-    {
-      quizName: "Astronomy Quiz",
-      quizDescription: "Coming Soon...",
-      quizImage:
-        "https://raw.githubusercontent.com/msdeshmukh009/orion-quiz/dev/assets/astronomy.jpg",
-      quizStatus: "not-available",
-    },
-  ];
+  const [quizData, setQuizData] = useState<DocumentData>();
+
+  const {
+    quizState: { quizzes },
+  } = useQuiz();
+
+  const { quizId } = useParams();
+
+  useEffect(() => {
+    setQuizData(quizzes.filter((quiz: DocumentData) => quiz.quizCategory === quizId));
+  }, [quizId, quizzes]);
+
   return (
     <div className={`explore-quiz-container ${currentTheme === "dark" ? "dark" : "light"}`}>
       <Navbar />
       <main className="quiz-display-container">
-        {quizData.map((quiz, index) => {
-          return <QuizCard key={index} quiz={quiz} />; //TODO:Use valid key
-        })}
+        {quizData?.map(
+          (quiz: {
+            id: string;
+            quizCategory: string;
+            quizDescription: string;
+            quizImage: string;
+            quizName: string;
+            quizStatus: string;
+          }) => {
+            return <QuizCard key={quiz.id} quiz={quiz} />;
+          }
+        )}
       </main>
       <Footer />
     </div>

@@ -12,8 +12,12 @@
 .answers {
   display: flex;
   flex-direction: column;
-  row-gap: var(--lg-space);
+  row-gap: 5rem;
   width: 90%;
   max-width: 112.5rem;
   margin: auto;
+}
+.result-heading {
+  display: flex;
+  justify-content: space-between;
 }

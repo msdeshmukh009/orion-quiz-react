@@ -7,7 +7,9 @@ export type {
   ReactMouseEvent,
   LocationState,
 } from "./Common.types";
-export type { ThemeContextType } from "./ThemeContext.types";
+export type { ThemeContextType } from "./context-types/ThemeContext.types";
 export type { FormErrorsType } from "./FormErrors.types";
 export type { LogInUserInput, UserDetailType } from "./UserInput.types";
-export type { AuthAction, AuthContextType, authState } from "./AuthContext.types";
+export type { AuthAction, AuthContextType, authState } from "./context-types/AuthContext.types";
+export type { ActionType, QuizContextType, QuizState } from "./context-types/QuizContext.types";
+export type { GameActionType, GameContextType, GameState } from "./context-types/GameContext.types";

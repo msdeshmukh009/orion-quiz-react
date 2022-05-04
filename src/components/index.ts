@@ -6,3 +6,4 @@ export { Question } from "./question/Question";
 export { Input } from "./input/Input";
 export { Loading } from "./loading/Loading";
 export { OverlayContainer } from "./overlay-container/OverlayContainer";
+export { ResultCard } from "./result-card/ResultCard";

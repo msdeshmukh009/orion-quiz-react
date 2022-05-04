@@ -1,2 +1,8 @@
 export { getErrorMessage } from "./catchError";
-export { createUserDocument, getUserDocument } from "./firebaseHelpers";
+export {
+  createUserDocument,
+  getUserDocument,
+  getCategories,
+  getQuiz,
+  getQuizzes,
+} from "./firebaseHelpers";

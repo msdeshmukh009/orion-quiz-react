@@ -1,3 +1,4 @@
 .card.vertical-card {
   border: none;
+  justify-content: space-around;
 }
