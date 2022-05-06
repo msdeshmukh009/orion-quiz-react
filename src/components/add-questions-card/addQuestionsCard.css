@@ -1,0 +1,6 @@
+.question-form-wrapper {
+  padding: var(--md-space);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  margin-bottom: var(--md-space);
+}
