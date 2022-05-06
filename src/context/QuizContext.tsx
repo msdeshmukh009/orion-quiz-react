@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { getCategories, getQuizzes } from "../utils/firebaseHelpers";
 import { quizInitialState, quizReducer } from "../reducers";
 import { QuizContextType, ReactChildren } from "../types";
@@ -38,6 +38,4 @@ const QuizProvider = ({ children }: ReactChildren) => {
   );
 };
 
-const useQuiz = () => useContext(QuizContext);
-
-export { useQuiz, QuizProvider };
+export { QuizContext, QuizProvider };
