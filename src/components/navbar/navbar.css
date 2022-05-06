@@ -31,6 +31,9 @@
 .burger-menu {
   display: none;
 }
+.create-your-quiz-btn {
+  gap: var(--md-space);
+}
 .nav-list-web-item {
   display: flex;
 }
@@ -51,5 +54,10 @@
 @media only screen and (max-width: 1000px) {
   .burger-menu {
     display: block;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .nav-desktop-element {
+    display: none;
   }
 }
