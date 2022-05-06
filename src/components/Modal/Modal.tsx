@@ -1,12 +1,4 @@
-const Modal = ({
-  children,
-  showModal,
-  setShowModal,
-}: {
-  children: React.ReactNode;
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const Modal = ({ children, showModal }: { children: React.ReactNode; showModal: boolean }) => {
   return (
     <div className={`modal-background ${showModal ? "flex-total-center" : ""}`}>{children}</div>
   );
