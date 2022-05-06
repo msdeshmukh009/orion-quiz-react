@@ -1,6 +1,17 @@
 import { User } from "firebase/auth";
-import { collection, doc, DocumentData, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  DocumentData,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db, categoriesRef, quizzesRef } from "../firebase-config";
+import { QuestionType } from "../types";
+import { getErrorMessage } from "./catchError";
 
 const createUserDocument = async (
   user: User,
@@ -17,9 +28,14 @@ const createUserDocument = async (
     const { firstName, lastName } = additionalData;
 
     try {
-      setDoc(userRef, { email, firstName, lastName, createdAt: new Date() }).then(res =>
-        console.log(res)
-      );
+      setDoc(userRef, {
+        email,
+        firstName,
+        lastName,
+        createdAt: new Date(),
+        totalAttemptedQuiz: 0,
+        totalScore: 0,
+      }).then(res => console.log(res));
     } catch (err) {
       console.log(err);
     }
@@ -82,4 +98,62 @@ const getQuiz = async (quizId: string) => {
   }
 };
 
-export { createUserDocument, getUserDocument, getCategories, getQuizzes, getQuiz };
+const updateUserDocument = async (uid: string, currentScore: number) => {
+  try {
+    const userRef = doc(db, `users/${uid}`);
+    const userSnapshot = await getDoc(userRef);
+
+    if (userSnapshot.exists()) {
+      const { totalAttemptedQuiz, totalScore } = userSnapshot.data();
+
+      await updateDoc(userRef, {
+        totalAttemptedQuiz: totalAttemptedQuiz + 1,
+        totalScore: totalScore + currentScore,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const addQuiz = async (quizData: {
+  quizName: string;
+  quizDescription: string;
+  quizCategory: string;
+  quizImage: string;
+}) => {
+  try {
+    const quizRef = collection(db, "quizzes");
+    const res = await addDoc(quizRef, { ...quizData, quizStatus: "available" });
+    return res.id;
+  } catch (err) {
+    return "something went wrong";
+  }
+};
+
+const addQuestion = async ({
+  quizId,
+  questionData,
+}: {
+  quizId: string;
+  questionData: QuestionType;
+}) => {
+  try {
+    const quizRef = collection(db, `quizzes/${quizId}/questions`);
+    const res = await addDoc(quizRef, questionData);
+    return res;
+  } catch (err) {
+    return getErrorMessage(err);
+  }
+};
+
+export {
+  createUserDocument,
+  getUserDocument,
+  getCategories,
+  getQuizzes,
+  getQuiz,
+  updateUserDocument,
+  addQuiz,
+  addQuestion,
+};
