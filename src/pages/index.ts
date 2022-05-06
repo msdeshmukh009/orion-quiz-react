@@ -5,3 +5,4 @@ export { QuestionPage } from "./question-page/QuestionPage";
 export { Result } from "./result/Result";
 export { Signin, Signup } from "./authentication";
 export { Profile } from "./profile/Profile";
+export { CreateQuiz } from "./create-quiz/CreateQuiz";
