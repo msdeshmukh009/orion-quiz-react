@@ -6,13 +6,31 @@
   justify-content: space-between;
 }
 .question-wrapper .question-box {
-  min-height: 80vh;
+  min-height: 60vh;
 }
 .question-container {
   display: flex;
   flex-direction: column;
   row-gap: var(--xl-space);
   padding: var(--xl-space);
+}
+.quit-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--md-space);
+}
+.quit-quiz-modal {
+  background-color: var(--background-color);
+  padding: var(--md-space);
+  border-radius: 5px;
+  gap: var(--lg-space);
+  justify-content: center;
+}
+.quit-quiz-modal-cta {
+  gap: var(--md-space);
+}
+.quit-quiz-modal-cta .btn {
+  line-height: 1;
 }
 .grid-50-50.question-box {
   align-items: center;
@@ -22,16 +40,29 @@
   flex-direction: column;
   row-gap: var(--xl-space);
 }
+.question-head {
+  justify-content: space-between;
+}
+.timer {
+  padding: var(--sm-space);
+}
+.timer-modal {
+  background-color: var(--background-color);
+  padding: var(--md-space);
+  border-radius: 5px;
+  gap: var(--md-space);
+  flex-direction: column;
+}
 .option {
   background-color: var(--option-bg-color);
   padding: var(--md-space);
-  border-radius: 4.8px;
+  border-radius: 5px;
   cursor: pointer;
 }
 .result-option {
   background-color: var(--option-bg-color);
   padding: var(--md-space);
-  border-radius: 4.8px;
+  border-radius: 5px;
 }
 
 .option:hover {
