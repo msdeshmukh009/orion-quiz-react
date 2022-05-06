@@ -24,7 +24,7 @@ const QuizCard = ({ quiz }: QuizCardProp) => {
           width="300"
           height="168"
           className="responsive-img rounded-top-corner-img"
-          src={quizImage}
+          src={!quizImage ? "/assets/undraw_questions_re_1fy7.svg" : quizImage}
           alt={quizName}
         />
       </div>
