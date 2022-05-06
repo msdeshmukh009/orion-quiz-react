@@ -1,13 +1,19 @@
 import "./result.css";
-import { Footer, Navbar, ResultCard } from "../../components";
-import { useGame, useTheme } from "../../hooks";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Footer, Navbar, ResultCard } from "../../components";
+import { useAuth, useGame, useTheme } from "../../hooks";
+import { updateUserDocument } from "../../utils";
 
 const Result = () => {
   const { currentTheme } = useTheme();
   const {
     gameState: { questions, selectedOptions },
   } = useGame();
+
+  const {
+    authState: { uid },
+  } = useAuth();
 
   const correctOptionsArray = questions.map(
     (question: { correctOptionIndex: string }) => question.correctOptionIndex
@@ -17,6 +23,12 @@ const Result = () => {
     (acc, curr, index) => (curr === Number(correctOptionsArray[index]) ? acc + 10 : acc),
     0
   );
+
+  useEffect(() => {
+    (async () => {
+      await updateUserDocument(uid, score);
+    })();
+  }, [uid, score]);
 
   return (
     <div className={`result-container flex-column ${currentTheme === "dark" ? "dark" : "light"}`}>
