@@ -3,8 +3,7 @@ import { DocumentData } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { Footer, Navbar, QuizCard } from "../../components";
 import { useEffect, useState } from "react";
-import { useQuiz } from "../../context";
-import { useTheme } from "../../hooks";
+import { useQuiz, useTheme } from "../../hooks";
 
 const ExploreQuiz = () => {
   const { currentTheme } = useTheme();
