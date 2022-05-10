@@ -37,7 +37,7 @@ const createUserDocument = async (
         totalScore: 0,
       }).then(res => console.log(res));
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   }
 };
@@ -54,7 +54,7 @@ const getUserDocument = async (uid: string) => {
       return snapshot.data();
     }
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 
@@ -66,8 +66,7 @@ const getCategories = async () => {
     });
     return categories;
   } catch (err) {
-    console.log(err);
-    throw Error("something went wrong");
+    throw Error(getErrorMessage(err));
   }
 };
 
@@ -79,8 +78,7 @@ const getQuizzes = async () => {
     });
     return quizzes;
   } catch (err) {
-    console.log(err);
-    throw Error("something went wrong");
+    throw err;
   }
 };
 
@@ -93,8 +91,7 @@ const getQuiz = async (quizId: string) => {
     });
     return quiz;
   } catch (err) {
-    console.log(err);
-    throw Error("something went wrong");
+    throw err;
   }
 };
 
@@ -112,7 +109,7 @@ const updateUserDocument = async (uid: string, currentScore: number) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 
@@ -127,7 +124,7 @@ const addQuiz = async (quizData: {
     const res = await addDoc(quizRef, { ...quizData, quizStatus: "available" });
     return res.id;
   } catch (err) {
-    return "something went wrong";
+    throw err;
   }
 };
 
@@ -143,7 +140,7 @@ const addQuestion = async ({
     const res = await addDoc(quizRef, questionData);
     return res;
   } catch (err) {
-    return getErrorMessage(err);
+    throw err;
   }
 };
 
