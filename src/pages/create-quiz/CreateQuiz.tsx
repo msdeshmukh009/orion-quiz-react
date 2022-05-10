@@ -15,13 +15,16 @@ const CreateQuiz = () => {
   const [quizData, setQuizData] = useState({
     quizName: "",
     quizDescription: "",
-    quizCategory: "",
+    quizCategory: "The Space Quiz",
     quizImage: "",
     noOfQuestions: 1,
     questions: [] as QuestionType[],
   });
 
-  const { refreshQuizzes } = useQuiz();
+  const {
+    refreshQuizzes,
+    quizState: { categoryData },
+  } = useQuiz();
 
   const navigate = useNavigate();
 
@@ -193,10 +196,9 @@ const CreateQuiz = () => {
               value={quizData.quizCategory}
               onChange={changeHandler}
             >
-              <option>The Space Quiz</option>
-              <option>The Space Movie quiz</option>
-              <option>The Martian quiz</option>
-              <option>The rick & morty quiz</option>
+              {categoryData.map(({ categoryName }: { categoryName: string }, index: number) => (
+                <option key={index}>{categoryName}</option>
+              ))}
             </select>
             <div className="quiz-cta">
               <button
