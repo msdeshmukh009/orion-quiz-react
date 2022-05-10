@@ -37,6 +37,15 @@ type SetQuizzes = {
   };
 };
 
-type ActionType = InitializeAction | SetErrorAction | SetCategories | SetQuizzes;
+type RefreshCategories = {
+  type: "REFRESH_CATEGORIES";
+};
+
+type ActionType =
+  | InitializeAction
+  | SetErrorAction
+  | SetCategories
+  | SetQuizzes
+  | RefreshCategories;
 
 export type { ActionType, QuizContextType, QuizState };

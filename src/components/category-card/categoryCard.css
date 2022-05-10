@@ -2,3 +2,6 @@
   border: none;
   justify-content: space-around;
 }
+.card-image-container img {
+  height: 11rem;
+}

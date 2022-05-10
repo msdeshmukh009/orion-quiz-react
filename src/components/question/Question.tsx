@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { useGame } from "../../hooks";
+import { useGame, useTimer } from "../../hooks";
+import { Modal } from "../Modal/Modal";
 
 const Question = () => {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1);
+  const [showModal, setShowModal] = useState(false);
+  const { sec, minutes } = useTimer(setShowModal);
   const {
     gameState: { questions, currentQuestionIndex, selectedOptions },
     getNextQuestion,
@@ -18,11 +21,31 @@ const Question = () => {
 
   return (
     <div className="grid-50-50 question-box">
+      <Modal showModal={showModal}>
+        <div className="flex-total-center timer-modal">
+          <h1>Oops!! Times Up.😢</h1>
+          <button
+            className="btn btn-primary next-btn"
+            onClick={() => submitQuiz(selectedOptionIndex)}
+          >
+            Check Result
+          </button>
+        </div>
+      </Modal>
       <div className="question-image">
-        <img className="responsive-img rounded-corner-img" src={questionImage} alt={question} />
+        <img
+          className="responsive-img rounded-corner-img"
+          src={!questionImage ? "/assets/undraw_online_test_gba7.svg" : questionImage}
+          alt={question}
+        />
       </div>
       <div className="question">
-        <h3>Question {currentQuestionIndex + 1}</h3>
+        <div className="flex-total-center question-head">
+          <h3>Question {currentQuestionIndex + 1}</h3>
+          <span className={`timer ${minutes === 0 && sec < 10 ? "text-danger" : ""}`}>
+            {minutes < 10 ? `0${minutes}` : minutes}:{sec < 10 ? `0${sec}` : sec}
+          </span>
+        </div>
         <p className="question-statement text-lg">{question}</p>
         <div className="options grid-50-50">
           {options?.map((option: string, index: number) => (

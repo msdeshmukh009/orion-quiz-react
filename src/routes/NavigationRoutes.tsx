@@ -1,6 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "../hooks";
-import { Home, ExploreQuiz, Rules, QuestionPage, Result, Signup, Signin, Profile } from "../pages";
+import {
+  Home,
+  ExploreQuiz,
+  Rules,
+  QuestionPage,
+  Result,
+  Signup,
+  Signin,
+  Profile,
+  CreateQuiz,
+} from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 
 const NavigationRoutes = () => {
@@ -17,6 +27,7 @@ const NavigationRoutes = () => {
         <Route path="/result" element={<Result />} />
         <Route path="/question" element={<QuestionPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/create-quiz" element={<CreateQuiz />} />
       </Route>
 
       {!isAuthenticated ? (

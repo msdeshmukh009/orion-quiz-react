@@ -23,7 +23,7 @@ const Navbar = () => {
 
         <ul className="inline-style-list no-style-list nav-list flex-total-center">
           <li>
-            <Link to="/" className="link-btn" title="Home">
+            <Link to="/" className="link-btn nav-desktop-element" title="Home">
               Home
             </Link>
           </li>
@@ -48,6 +48,18 @@ const Navbar = () => {
               <i className={`fas fa-${currentTheme === "light" ? "moon" : "sun"}`}></i>
             </button>
           </li>
+          {isAuthenticated ? (
+            <li>
+              <Link
+                to="/create-quiz"
+                className="btn btn-outline-primary flex-total-center create-your-quiz-btn"
+                title="Create Quiz"
+              >
+                <span className="nav-desktop-element">Create your quiz</span>
+                <i className="fas fa-plus "></i>
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </div>
     </nav>

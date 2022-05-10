@@ -5,4 +5,8 @@ export {
   getCategories,
   getQuiz,
   getQuizzes,
+  updateUserDocument,
+  addQuiz,
+  addQuestion,
 } from "./firebaseHelpers";
+export { makeNumberArray } from "./arrayHelpers";

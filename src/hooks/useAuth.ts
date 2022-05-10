@@ -6,6 +6,7 @@ import { signupService, logoutService, loginService } from "../services";
 import { auth } from "../firebase-config";
 import { createUserDocument, getErrorMessage } from "../utils";
 import { onAuthStateChanged, User } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const useAuth = () => {
   const { authState, authDispatch } = useContext(AuthContext);
@@ -47,6 +48,8 @@ const useAuth = () => {
 
       const { user } = await signupService(email, password);
 
+      toast.success("SignIn Successfully");
+
       await createUserDocument(user, { firstName, lastName });
 
       navigate(from, { replace: true });
@@ -74,7 +77,7 @@ const useAuth = () => {
     try {
       authDispatch({ type: "INITIALIZE" });
       await loginService(email, password);
-
+      toast.success("SignIn Successfully");
       navigate(from, { replace: true });
     } catch (err) {
       if (getErrorMessage(err) === "Firebase: Error (auth/wrong-password).") {
@@ -105,6 +108,7 @@ const useAuth = () => {
   const logout = () => {
     logoutService();
     navigate("/");
+    toast.success("SignOut Successfully");
   };
 
   return { signUp, logout, login, authState };

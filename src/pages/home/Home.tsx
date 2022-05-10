@@ -1,7 +1,7 @@
 import "./home.css";
 import { Footer, Navbar, CategoryCard, Loading } from "../../components";
 import { useGame, useTheme } from "../../hooks";
-import { useQuiz } from "../../context";
+import { useQuiz } from "../../hooks";
 import { useEffect } from "react";
 
 const Home = () => {

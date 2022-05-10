@@ -17,6 +17,8 @@ const quizReducer = (state: QuizState, action: ActionType) => {
       return { ...state, isLoading: false, categoryData: action.payload.categoryData };
     case "SET_QUIZZES":
       return { ...state, isLoading: false, quizzes: action.payload.quizzes };
+    default:
+      return state;
   }
 };
 export { quizInitialState, quizReducer };
