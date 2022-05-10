@@ -1,7 +1,7 @@
 import "./profile.css";
 import { useEffect, useState } from "react";
 import { Footer, Loading, Navbar } from "../../components";
-import { getUserDocument } from "../../utils";
+import { getErrorMessage, getUserDocument } from "../../utils";
 import { useAuth } from "../../hooks";
 
 const Profile = () => {
@@ -13,6 +13,7 @@ const Profile = () => {
     totalScore: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const { firstName, lastName, email, totalAttemptedQuiz, totalScore } = userData;
   const {
     logout,
@@ -24,7 +25,7 @@ const Profile = () => {
       try {
         setIsLoading(true);
         const userProfile = await getUserDocument(uid);
-        console.log(userProfile);
+
         if (userProfile) {
           setUserData({
             firstName: userProfile?.firstName,
@@ -36,7 +37,7 @@ const Profile = () => {
         }
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
+        setError(`Error Occurred, Try again: ${getErrorMessage(err)}`);
       }
     })();
   }, [uid]);
@@ -65,6 +66,7 @@ const Profile = () => {
         ) : (
           <div className="profile flex-total-center flex-column">
             <h2 className="text-center">User Profile</h2>
+            {error && <span className="text-center text-danger">{error}</span>}
             <div className="profile-info flex-total-center">
               <div
                 className="avatar avatar-lg-size text-avatar cursor-pointer flex-total-center"
