@@ -1,0 +1,6 @@
+.not-found-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  height: 100vh;
+  gap: var(--md-space);
+}
