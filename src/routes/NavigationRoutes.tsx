@@ -10,6 +10,7 @@ import {
   Signin,
   Profile,
   CreateQuiz,
+  NotFound,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -41,6 +42,7 @@ const NavigationRoutes = () => {
           <Route path="/sign-in" element={<Navigate replace to="/" />}></Route>
         </>
       )}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

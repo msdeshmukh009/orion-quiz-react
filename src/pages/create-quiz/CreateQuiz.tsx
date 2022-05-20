@@ -169,7 +169,6 @@ const CreateQuiz = () => {
                 className="form-field"
                 type="text"
                 placeholder="Enter url for quiz display image"
-                maxLength={35}
                 name="quizImage"
                 value={quizData.quizImage}
                 onChange={changeHandler}
