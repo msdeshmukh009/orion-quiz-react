@@ -25,7 +25,7 @@ const Home = () => {
         <section className="grid-50-50">
           <div className="banner-details text-center">
             <h1 className="text-primary-color text-xl banner-heading">The Orion Quiz</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, sunt!</p>
+
             <div className="section-cta">
               <a className="btn btn-primary" href="#categories">
                 Explore Categories
