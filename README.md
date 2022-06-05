@@ -8,10 +8,10 @@
 ## **How to install and run locally ?**
 
 ```
-$ git clone https://github.com/msdeshmukh009/orion-quiz-react.git
-$ cd orion-quiz
-$ npm install
-$ npm start
+git clone https://github.com/msdeshmukh009/orion-quiz-react.git
+cd orion-quiz
+npm install
+npm start
 ```
 
 ## **Features -**
